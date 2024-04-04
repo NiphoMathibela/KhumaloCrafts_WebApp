@@ -62,7 +62,7 @@ nav a {
 }
 
 .btn-outline-primary:hover {
-    color: #c1c2a5;
+    color: #c1c2a5 !important;
     background-color: #000000 !important;
 }
 
