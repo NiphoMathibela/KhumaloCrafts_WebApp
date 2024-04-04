@@ -35,6 +35,12 @@ h5 {
     font-size: 1.333rem; /* 21.28px */
 }
 
+/*Nav*/
+nav a {
+    font-family: 'Arbutus Slab';
+    font-weight: 200;
+}
+
 
 /*Hero*/
 .hero-img {
