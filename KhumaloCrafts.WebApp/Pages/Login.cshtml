@@ -1,0 +1,51 @@
+﻿@page
+@model KhumaloCrafts.WebApp.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+						<h1>Sign In</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container" id="fh5co-about">
+	<div class="col-md-6 animate-box">
+		<form action="#">
+
+			<div class="row form-group mb-2">
+				<div class="col-md-12">
+					<!-- <label for="email">Email</label> -->
+					<input type="text" id="email" name="email" class="form-control" placeholder="E-mail">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
+					<input type="password" id="password" name="password" class="form-control" placeholder="Password">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Sign In" class="btn btn-primary">
+			</div>
+
+
+			<div>
+				<a>Don't have an account? <span><a asp-page="/SignUp">Sign up here.</a></span></a>
+			</div>
+
+		</form>
+    </div>
+</div>

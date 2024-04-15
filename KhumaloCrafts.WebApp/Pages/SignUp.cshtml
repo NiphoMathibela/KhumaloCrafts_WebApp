@@ -4,43 +4,61 @@
     ViewData["Title"] = "SignUp";
 }
 
-<form method="post">
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="text" id="registerName" class="form-control" value="@Model.userInfo.Name" name="registerName"/>
-        <label class="form-label" for="registerName">Name</label>
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="display-t">
+                    <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                        <h1>Sign Up</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</header>
 
-    <!-- Email input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="email" id="registerEmail" class="form-control" value="@Model.userInfo.Email" name="registerEmail"/>
-        <label class="form-label" for="registerEmail">Email</label>
-    </div>
+<div class="container" id="fh5co-about">
+    <div class="col-md-6 animate-box">
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" id="registerName" class="form-control" value="@Model.userInfo.Name" name="registerName" />
+                <label class="form-label" for="registerName">Name</label>
+            </div>
 
-    <!-- Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="password" id="registerPassword" class="form-control" value="@Model.userInfo.PasswordHash" name="registerPassword" />
-        <label class="form-label" for="registerPassword">Password</label>
-    </div>
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" id="registerEmail" class="form-control" value="@Model.userInfo.Email" name="registerEmail" />
+                <label class="form-label" for="registerEmail">Email</label>
+            </div>
 
-    <!-- Repeat Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="password" id="registerRepeatPassword" class="form-control" />
-        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-    </div>
-    <!-- Repeat Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="text" id=shippingAddress" class="form-control" value="@Model.userInfo.ShippingAddress" name="shippingAddress"/>
-        <label class="form-label" for="shippingAddress">Shipping Address</label>
-    </div>
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="registerPassword" class="form-control" value="@Model.userInfo.PasswordHash" name="registerPassword" />
+                <label class="form-label" for="registerPassword">Password</label>
+            </div>
 
-    <!-- Repeat Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="text" id=billingAddress" class="form-control" value="@Model.userInfo.BillingAddress" name="billingAddress" />
-        <label class="form-label" for="billingAddress">Billing Address</label>
-    </div>
+            <!-- Repeat Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="registerRepeatPassword" class="form-control" />
+                <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+            </div>
+            <!-- Repeat Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" id=shippingAddress" class="form-control" value="@Model.userInfo.ShippingAddress" name="shippingAddress" />
+                <label class="form-label" for="shippingAddress">Shipping Address</label>
+            </div>
 
-    <div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+            <!-- Repeat Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" id=billingAddress" class="form-control" value="@Model.userInfo.BillingAddress" name="billingAddress" />
+                <label class="form-label" for="billingAddress">Billing Address</label>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </form>
     </div>
-</form>
-<!-- Pills content -->
+</div>
