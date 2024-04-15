@@ -10,6 +10,8 @@
 
         public string? ProductPrice { get; set; }
 
+        public int Stock { get; set; }
+
         public string? Img { get; set; }
     }
 }

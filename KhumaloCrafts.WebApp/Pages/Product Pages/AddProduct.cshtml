@@ -22,7 +22,7 @@
 <div class="container" id="fh5co-contact">
 
 	<div class="col-md-6 animate-box" >
-		<form action="#">
+		<form method="post">
 
 			<div class="row form-group mb-2">
 				<div class="col-md-12">
@@ -48,6 +48,13 @@
 			<div class="row form-group mb-3">
 				<div class="col-md-12">
 					<!-- <label for="subject">Subject</label> -->
+					<input type="text" id="stockAmount" name="stockAmount" class="form-control" placeholder="Amount of available stock">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
 					<input type="text" id="productPrice" name="productPrice" class="form-control" placeholder="Price of your product in Rands e.g 1000">
 				</div>
 			</div>
@@ -62,8 +69,6 @@
 			<div class="form-group">
 				<input type="submit" value="Add product" class="btn btn-primary">
 			</div>
-
-
 		</form>
 	</div>
 </div>

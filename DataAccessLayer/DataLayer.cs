@@ -23,6 +23,7 @@ namespace DataAccessLayer
             }
         }
 
+        //CREATE NEW USER
         public void CreateUser(string name, string email, string passwordHash, string shippingAddress, string billingAddress)
         {
             OpenCloseDatabase();
@@ -30,5 +31,16 @@ namespace DataAccessLayer
             cmd = new SqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
         }
+
+        //CREATE NEW PRODUCT
+        public void CreateProduct(string productName, string productDescription, string productCategory, string productPrice, int stock)
+        {
+            OpenCloseDatabase();
+            string sql = $"insert into Products(name, description, categoryId, price, stock) values('{productName}', '{productDescription}', '{productCategory}', '{productPrice}', '{stock}')";
+            cmd = new SqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+
     }
 }

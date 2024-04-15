@@ -10,5 +10,10 @@ namespace BusinessLogicLayer
         {
             dataClass.CreateUser(name, email, passwordHash, shippingAddress, billingAddress);
         }
+
+        public void NewProduct(string productName, string productDescription, string productCategory, string productPrice, int stock)
+        {
+            dataClass.CreateProduct(productName, productDescription, productCategory, productPrice, stock);
+        }
     }
 }
