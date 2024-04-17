@@ -1,0 +1,26 @@
+﻿@page
+@using BusinessLogicLayer;
+@using KhumaloCrafts.WebApp.Models;
+@using DataAccessLayer.Models;
+@using System.Text.Json;
+
+@{
+    try
+    {
+        BusinessLayer businessObj = new BusinessLayer();
+
+        //ID will be replaced with user ID when autehntication is in place
+        string userId = "1";
+
+        string id = Request.Query["id"];
+
+        businessObj.DeleteProduct(userId, id);
+
+        Response.Redirect("/Profile");
+    }
+    catch (Exception ex)
+    {
+        
+        throw;
+    }
+}

@@ -24,8 +24,6 @@ namespace KhumaloCrafts.WebApp.Pages
             userInfo.ShippingAddress = Request.Form["shippingAddress"];
             userInfo.BillingAddress = Request.Form["billingAddress"];
 
-            Console.WriteLine(userInfo.Name);
-
             businessObj.NewUser(userInfo.Name, userInfo.Email, userInfo.PasswordHash, userInfo.ShippingAddress, userInfo.BillingAddress);
         }
     }

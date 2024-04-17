@@ -1,0 +1,71 @@
+﻿@page
+@model KhumaloCrafts.WebApp.Pages.EditProductModel
+@{
+    ViewData["Title"] = "EditProduct";
+}
+
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="display-t">
+					<div class="display-tc animate-box" data-animate-effect="fadeIn">
+						<h1>Edit product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container" id="fh5co-contact">
+	<div class="col-md-6 animate-box">
+		<form method="post">
+			<input type="hidden" value="@Model.product.Id" name="id" />
+			<input type="hidden" value="@Model.product.Img" name="img" />
+			<div class="row form-group mb-2">
+				<div class="col-md-12">
+					<!-- <label for="email">Email</label> -->
+					<input type="text" id="productName" name="productName" class="form-control" placeholder="Product name" value="@Model.product.ProductName">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
+					<input type="text" id="productDescription" name="productDescription" class="form-control" placeholder="Description of your product" value="@Model.product.ProductDescription">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
+					<input type="text" id="category" name="category" class="form-control" placeholder="Category of your product" value="@Model.product.ProductCategory">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
+					<input type="text" id="stockAmount" name="stockAmount" class="form-control" placeholder="Amount of available stock" value="@Model.product.Stock">
+				</div>
+			</div>
+
+			<div class="row form-group mb-3">
+				<div class="col-md-12">
+					<!-- <label for="subject">Subject</label> -->
+					<input type="text" id="productPrice" name="productPrice" class="form-control" placeholder="Price of your product in Rands e.g 1000" value="@Model.product.ProductPrice">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Update product" class="btn btn-primary">
+			</div>
+		</form>
+
+		<div class="form-group mb-3">
+			<button id="uploadImage">Upload</button>
+		</div>
+	</div>
+</div>

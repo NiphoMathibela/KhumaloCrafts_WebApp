@@ -2,8 +2,7 @@ using BusinessLogicLayer;
 using KhumaloCrafts.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Identity.Client;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Azure.Storage.Blobs;
 
 namespace KhumaloCrafts.WebApp.Pages.Product_Pages
 {
@@ -19,16 +18,23 @@ namespace KhumaloCrafts.WebApp.Pages.Product_Pages
 
         //Success message
         public string successMssg = "";
-        public void OnGet()
+
+		public void OnGet()
         {
         }
+		public void OnPost() 
+        {
 
-        public void OnPost() 
-        { 
-            newProduct.ProductName = Request.Form["productName"];
+			newProduct.ProductName = Request.Form["productName"];
             newProduct.ProductDescription = Request.Form["productDescription"];
             newProduct.ProductCategory = Request.Form["productCategory"];
             newProduct.ProductPrice = Request.Form["productPrice"];
+            newProduct.Img = Request.Form["imageUrl"];
+
+            if (string.IsNullOrEmpty(newProduct.Img))
+            {
+                newProduct.Img = "https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=";
+            }
 
             string stock = Request.Form["stockAmount"];
             int number;
@@ -39,8 +45,10 @@ namespace KhumaloCrafts.WebApp.Pages.Product_Pages
 				newProduct.Stock = number;
 			}
 
-                //Send dat to the DB
-                businessObj.NewProduct(newProduct.ProductName, newProduct.ProductDescription, newProduct.ProductCategory, newProduct.ProductPrice, newProduct.Stock);
+            string artisanId = "1";
+
+                //Send data to the DB
+                businessObj.NewProduct(newProduct.ProductName, newProduct.ProductDescription, artisanId, newProduct.ProductCategory, newProduct.ProductPrice, newProduct.Stock, newProduct.Img);
         }
     }
 }

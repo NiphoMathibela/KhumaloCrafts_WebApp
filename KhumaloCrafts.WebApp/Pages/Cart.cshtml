@@ -1,0 +1,57 @@
+﻿@page
+@model KhumaloCrafts.WebApp.Pages.CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <div class="container">
+        <div class="row w-100">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="width:60%">Product</th>
+                            <th style="width:12%">Price</th>
+                            <th style="width:10%">Quantity</th>
+                            <th style="width:16%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     @foreach(var item in Model.cartList){
+                            <tr>
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <div class="col-md-3 text-left">
+                                            <img src="@item.Images" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                        </div>
+                                        <div class="col-md-9 text-left mt-sm-2">
+                                            <h4>@item.Name</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="Price">R @item.Price</td>
+                                <td data-th="Quantity">
+                                    <input type="number" class="form-control form-control-lg text-center" value="1">
+                                </td>
+                                <td class="actions" data-th="">
+                                    <div class="text-right">
+                                        <button class="btn btn-md mb-2">
+                                            <ion-icon name="trash-outline" style="font-size:24px;"></ion-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+        </div>
+
+        <div class="col-sm-6 order-md-2 text-right">
+            <a asp-page="/CheckOut" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+        </div>
+   </div>
