@@ -13,12 +13,12 @@ namespace KhumaloCrafts.WebApp.Pages
 
         public List<DProducts> cartProducts = new List<DProducts>();
 
-        public string userId = "1";
+        public int userId = 1;
 
-        public List<CartItems> cartList = new List<CartItems>();
+        public List<DProducts> cartList = new List<DProducts>();
         public void OnGet()
         {
-            cartList = businessObj.GetCartProducts(userId);
+            cartList = businessObj.GetCartItems(userId);
         }
     }
 }

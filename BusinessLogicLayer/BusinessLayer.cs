@@ -90,5 +90,35 @@ namespace BusinessLogicLayer
         {
             dataClass.DeleteProduct(userId, productId);
         }
+
+        //Cart
+        public void Cart(int userId, int productId, int quantity)
+        {
+            dataClass.Cart(userId, productId, quantity);
+        }
+
+        //Check if item exists in cart before adding
+        public DCartInfo CartInfo(int userId, int productId)
+        {
+            return dataClass.CartInfo(userId, productId);
+        }
+
+        //Update quantity
+        public void UpdateQuantity(int userId, int productId)
+        {
+            dataClass.UpdateQuantity(userId, productId);
+        }
+
+        //Features
+        public void CartFeatures(int userId, int productId)
+        {
+            dataClass.CartFeauture(userId, productId);
+        }
+
+        //Get items
+        public List<DProducts> GetCartItems(int userId)
+        {
+            return dataClass.GetItems(userId);
+        }
     }
 }

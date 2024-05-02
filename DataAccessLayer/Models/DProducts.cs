@@ -22,5 +22,7 @@ namespace DataAccessLayer.Models
 		public string? Img { get; set; }
 
         public int? ItemOrderQuatity { get; set; }
+
+		public int? Quantity { get; set; }
     }
 }

@@ -7,48 +7,14 @@
 @{
     try
     {
-        // Get current date and time
-        var currentDateAndTime = DateTime.Now;
-
-        // Convert to string if needed
-        var formattedDateTime = currentDateAndTime.ToString("yyyy-MM-dd HH:mm:ss"); // Example format
-
-        List<Product> cartItems = new List<Product>();
-
-
-        // Retrieve parameters from the request
-        var productId = Request.Query["id"];
-        var productName = Request.Query["name"];
-        var productDescription = Request.Query["description"];
-        var productPrice = Request.Query["price"];
-        var img = Request.Query["img"];
-        var itemOrderQuantity = 1;
-
-        if (string.IsNullOrEmpty(img))
-        {
-            img = "https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=";
-        }
-
-        CartItems cartItem = new CartItems
-                {
-                    ProductId = productId,
-                    Name = productName,
-                    Price = productPrice,
-                    Images = img,
-                    Quantity = itemOrderQuantity,
-                    OrderDate = currentDateAndTime,
-                    OrderStatus = "InCart",
-                    UserId = "1"
-                    // You might need to set other properties based on your requirements
-                };
-
-
-
         BusinessLayer businessObj = new BusinessLayer();
 
-        //Cart Items
-        businessObj.PutCartItems(cartItem.Name, cartItem.Price, cartItem.Images, cartItem.UserId, cartItem.ProductId, formattedDateTime, "InCart", cartItem.Quantity);
-        //Redirect user back to MyWork Page
+        int productId = Convert.ToInt32(Request.Query["id"]);
+        int userId = 1;
+        int quantity = 1;
+
+        businessObj.CartFeatures(userId, productId);
+
         Response.Redirect("/MyWork");
     }
     catch (Exception ex)
@@ -56,4 +22,5 @@
 
         throw;
     }
+
 }

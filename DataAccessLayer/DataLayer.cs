@@ -310,5 +310,85 @@ namespace DataAccessLayer
             cmd.ExecuteNonQuery();
 		}
 
+        //ADD TO CART
+        public void Cart(int userId, int productId, int quantity)
+        {
+            OpenCloseDatabase();
+
+            string sql = $"INSERT INTO Cart(userId, productId, quantity) VALUES('{userId}, '{productId}', '{quantity}')";
+        }
+
+        //CHECK IF ITEM EXISTS CART BEFORE ADDING TO CART
+        public DCartInfo CartInfo(int userId, int productId)
+        {
+            OpenCloseDatabase();
+
+            string sql = $"SELECT * FROM  Cart WHERE userId ='{userId}' AND productId='{productId}';";
+            cmd = new SqlCommand(sql, conn);
+
+            DCartInfo cartItem = new DCartInfo();
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    cartItem.userId = reader.GetInt32(0);
+                    cartItem.productId = reader.GetInt32(1);
+                    cartItem.quantity = reader.GetInt32(2);
+                }
+            }
+
+            return cartItem;
+        }
+
+        //UPDATE CART ITEM QUANTITY
+        public void UpdateQuantity(int userId, int productId)
+        {
+            OpenCloseDatabase();
+
+            string sql = $"UPDATE Cart SET quantity= quantity + {1} WHERE userId = '{userId} AND productId='{productId}'";
+            cmd = new SqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        //CART FEATURE
+        public void CartFeauture(int userId, int productId)
+        {
+            OpenCloseDatabase();
+
+            string sql = $"IF EXISTS (SELECT 1 FROM cart WHERE productId = '{productId}') BEGIN    UPDATE cart SET quantity = quantity + '1' WHERE productId = '{productId}'; END   ELSE    BEGIN    INSERT INTO cart (productId, userId, quantity) VALUES ('{productId}', '{userId}', 1); END";
+            cmd = new SqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        //GET CART ITEMS
+        public List<DProducts> GetItems(int userId)
+        {
+            OpenCloseDatabase();
+
+            string sql = $"SELECT p.productId AS product_id, p.name AS name, p.price AS product_price, p.images AS product_img, c.quantity AS product_quantity FROM Products p JOIN Cart c ON p.productId = c.productId WHERE c.userId = '{userId}';";
+            cmd = new SqlCommand(sql, conn);
+
+            List<DProducts> cartItems = new List<DProducts>();
+
+            using(SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DProducts cartItem = new DProducts();
+
+                    cartItem.Id = reader.GetInt32(0);
+                    cartItem.ProductName = reader.GetString(1);
+                    cartItem.Img = reader.GetString(3);
+                    cartItem.Quantity = reader.GetInt32(4);
+                    cartItem.ProductPrice = reader.GetDecimal(2);
+
+                    cartItems.Add(cartItem);
+                }
+            }
+
+            return cartItems;
+        }
+
     }
 }
