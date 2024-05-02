@@ -84,36 +84,6 @@ namespace DataAccessLayer
             cmd.ExecuteNonQuery();
         }
 
-        //GET ORDERS
-        public List<DOrder> GetOrders(string userId)
-        {
-            OpenCloseDatabase();
-            string sql = $"select * from Orders where userId = {userId}";
-            cmd = new SqlCommand(sql, conn);
-
-            List<DOrder> orders = new List<DOrder>();
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    DOrder order = new DOrder();
-
-                    order.Id = reader.GetInt32(0);
-                    order.UserId = reader.GetString(1);
-                    order.OrderDate = reader.GetString(2);
-                    order.OrderStatus = reader.GetString(3);
-                    order.Items = reader.GetString(4);
-                    order.TotalPrice = reader.GetDecimal(5).ToString();
-                    order.ShippingAddress = reader.GetString(6);
-
-                    orders.Add(order);
-                }
-            }
-
-            return orders;
-        }
-
         //CART ITEMS
         public List<CartItems> GetCartItems(string userId)
         {
@@ -309,47 +279,6 @@ namespace DataAccessLayer
 			cmd = new SqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
 		}
-
-        //ADD TO CART
-        public void Cart(int userId, int productId, int quantity)
-        {
-            OpenCloseDatabase();
-
-            string sql = $"INSERT INTO Cart(userId, productId, quantity) VALUES('{userId}, '{productId}', '{quantity}')";
-        }
-
-        //CHECK IF ITEM EXISTS CART BEFORE ADDING TO CART
-        public DCartInfo CartInfo(int userId, int productId)
-        {
-            OpenCloseDatabase();
-
-            string sql = $"SELECT * FROM  Cart WHERE userId ='{userId}' AND productId='{productId}';";
-            cmd = new SqlCommand(sql, conn);
-
-            DCartInfo cartItem = new DCartInfo();
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    cartItem.userId = reader.GetInt32(0);
-                    cartItem.productId = reader.GetInt32(1);
-                    cartItem.quantity = reader.GetInt32(2);
-                }
-            }
-
-            return cartItem;
-        }
-
-        //UPDATE CART ITEM QUANTITY
-        public void UpdateQuantity(int userId, int productId)
-        {
-            OpenCloseDatabase();
-
-            string sql = $"UPDATE Cart SET quantity= quantity + {1} WHERE userId = '{userId} AND productId='{productId}'";
-            cmd = new SqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-        }
 
         //CART FEATURE
         public void CartFeauture(int userId, int productId)

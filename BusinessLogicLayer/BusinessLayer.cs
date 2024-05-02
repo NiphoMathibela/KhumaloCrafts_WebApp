@@ -32,36 +32,6 @@ namespace BusinessLogicLayer
             dataClass.CreateOrder(userId, orderDate, orderStatus, items, totalPrice, shippingAddress);
         }
 
-        //Getting orders
-        public List<DOrder> GetOrders(string userId)
-        {
-            return dataClass.GetOrders(userId);
-        }
-
-        //Cart Items
-        public List<DProducts> cartItems = new List<DProducts>();
-
-        //Get cart items
-        public List<CartItems> GetCartProducts(string userId)
-        {
-            return dataClass.GetCartItems(userId);
-        }
-
-        public void PutCartItems(string name, string price, string images, string userId, string productId, string orderDate, string orderStatus, int quantity)
-        {
-            dataClass.AddCartItems(name, price, images, userId, productId, orderDate, orderStatus, quantity);
-        }
-
-        public void UpdateQuantity(int quantity, string userId, string productId)
-        {
-            dataClass.UpdateProductQuantity(quantity, userId, productId);
-        }
-
-        public void UpdateItem(int quantity, string userId, string productId)
-        {
-            dataClass.UpdateQuantity(quantity, userId, productId);
-        }
-
         //Cart Price
         public decimal CartPrice(string userId)
         {
@@ -89,24 +59,6 @@ namespace BusinessLogicLayer
         public void DeleteProduct(string userId, string productId)
         {
             dataClass.DeleteProduct(userId, productId);
-        }
-
-        //Cart
-        public void Cart(int userId, int productId, int quantity)
-        {
-            dataClass.Cart(userId, productId, quantity);
-        }
-
-        //Check if item exists in cart before adding
-        public DCartInfo CartInfo(int userId, int productId)
-        {
-            return dataClass.CartInfo(userId, productId);
-        }
-
-        //Update quantity
-        public void UpdateQuantity(int userId, int productId)
-        {
-            dataClass.UpdateQuantity(userId, productId);
         }
 
         //Features
