@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Components.Web;
+@using KhumaloCrafts.WebApp.Models;
+@using Azure.Search.Documents;
+
+<h3>SearchComponent</h3>
+
+@code {
+    public string InputValue { get; set; } = "";
+
+    public List<ProductAzure> searchList { get; set; } = new List<ProductAzure>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+
+    {
+
+        if (firstRender)
+
+        {
+
+            await ExecuteSearch();
+
+        }
+
+    }
+
+    public async Task ExecuteSearch()
+    {
+
+        string searchText = InputValue;
+
+        var endpoint = "https://khumalosearch.search.windows.net";
+        var indexName = "azuresql-productindex";
+        var key = "G98l0Vwswqqnp4qTAiU70PxtI4xav2G4l8q8KwCIWjAzSeDz6QYV";
+
+        SearchClient searchClient = new SearchClient(new Uri(endpoint), indexName, new Azure.AzureKeyCredential(key));
+
+        var options = new SearchOptions();
+
+        options.Select.Add("name");
+        options.Select.Add("productId");
+        options.Select.Add("categoryId");
+        options.Select.Add("description");
+        options.Select.Add("price");
+        options.Select.Add("images");
+
+        options.IncludeTotalCount = true;
+
+        var results = await searchClient.SearchAsync<ProductAzure>(searchText, options);
+
+        Console.WriteLine($"rESULTS cOUNT: {results.Value.TotalCount}");
+
+        await foreach (var item in results.Value.GetResultsAsync())
+        {
+            Console.WriteLine(item);
+
+
+            searchList.Add(new ProductAzure
+                {
+                    productId = item.Document.productId,
+                    name = item.Document.name,
+                    description = item.Document.description,
+                    images = item.Document.images,
+                    categoryId = item.Document.categoryId,
+                    price = item.Document.price,
+                });
+        }
+
+        StateHasChanged();
+    }
+
+    public void OnButtonClick()
+    {
+        ExecuteSearch();
+    }
+
+}
+
+<div id="fh5co-product">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 mb-4">
+
+                    <div class="input-group">
+
+                        <input type="search" @bind="InputValue" @value="InputValue" class="form-control" placeholder="Search...">
+
+                        <div class="input-group-append">
+
+                            <button class="btn btn-primary" style="margin-left: 8px; height: 54px" @onclick="() => ExecuteSearch()">Search</button>
+
+                        </div>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            @foreach (var item in searchList)
+            {
+                <div class="col-md-4 text-center animate-box" value="@item.productId">
+                    <div class="product">
+                        <div class="product-grid" style="background-image:url(@item.images);">
+                            <div class="inner">
+                                <p>
+                                    <a class="icon" href="/AddToCart?id=@item.productId&name=@item.name&description=@item.description&price=@item.price&img=@item.images"><ion-icon name="cart" size="medium"></ion-icon></a>
+                                    <a href="single.html" class="icon"><ion-icon name="eye" size="medium"></ion-icon></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <h3><a href="single.html">@item.name</a></h3>
+                            R<span class="price">@item.price</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

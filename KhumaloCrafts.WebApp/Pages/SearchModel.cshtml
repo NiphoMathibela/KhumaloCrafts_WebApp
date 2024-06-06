@@ -1,0 +1,13 @@
+﻿
+@{
+    try
+    {
+        string text = Request.Query["searchTetx"]
+        Response.Redirect($"/Search/?searchText={text}");
+    }
+    catch (Exception ex)
+    {
+
+        throw;
+    }
+}

@@ -7,14 +7,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\SearchModel.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Search.Documents" Version="11.5.1" />
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="Microsoft.Azure.Search.Service" Version="10.1.0" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\SearchModel.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\SearchModel.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\SearchModel.cshtml" />
   </ItemGroup>
 
 </Project>

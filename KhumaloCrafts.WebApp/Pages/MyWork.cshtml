@@ -18,26 +18,76 @@
 
 <div id="fh5co-product">
 	<div class="container">
+
         <div class="row">
 
-            @foreach (var item in Model.products)
+            <div class="col-md-6 offset-md-3 mb-4">
+
+                <form method="post">
+
+                    <div class="input-group">
+
+                        <input type="search" value="@Model.searchText" class="form-control" placeholder="Search...">
+
+                        <div class="input-group-append">
+
+                            <a type="submit" class="btn btn-primary" style="margin-left: 8px; height: 54px" href="/Search/?searchText=@Model.searchText">Search</a>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            @if(Model.searchText != null)
             {
-                <div class="col-md-4 text-center animate-box" value="@item.Id">
-                    <div class="product">
-                        <div class="product-grid" style="background-image:url(@item.Img);">
-                            <div class="inner">
+                @foreach (var item in Model.searchResults)
+                {
+                    <div class="col-md-4 text-center animate-box" value="@item.Id">
+                        <div class="product">
+                            <div class="product-grid" style="background-image:url(@item.Img);">
+                                <div class="inner">
                                     <p>
                                         <a class="icon" href="/AddToCart?id=@item.Id&name=@item.ProductName&description=@item.ProductDescription&price=@item.ProductPrice&stock=@item.Stock&img=@item.Img"><ion-icon name="cart" size="medium"></ion-icon></a>
                                         <a href="single.html" class="icon"><ion-icon name="eye" size="medium"></ion-icon></a>
                                     </p>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <h3><a href="single.html">@item.ProductName</a></h3>
+                                R<span class="price">@item.ProductPrice</span>
                             </div>
                         </div>
-                        <div class="desc">
-                            <h3><a href="single.html">@item.ProductName</a></h3>
-                            R<span class="price">@item.ProductPrice</span>
+                    </div>
+                }
+            }
+            else
+            {
+                foreach (var item in Model.products)
+                {
+                    <div class="col-md-4 text-center animate-box" value="@item.Id">
+                        <div class="product">
+                            <div class="product-grid" style="background-image:url(@item.Img);">
+                                <div class="inner">
+                                    <p>
+                                        <a class="icon" href="/AddToCart?id=@item.Id&name=@item.ProductName&description=@item.ProductDescription&price=@item.ProductPrice&stock=@item.Stock&img=@item.Img"><ion-icon name="cart" size="medium"></ion-icon></a>
+                                        <a href="single.html" class="icon"><ion-icon name="eye" size="medium"></ion-icon></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <h3><a href="single.html">@item.ProductName</a></h3>
+                                R<span class="price">@item.ProductPrice</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
         </div>
 	</div>

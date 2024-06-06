@@ -1,0 +1,70 @@
+﻿@page
+@model KhumaloCrafts.WebApp.Pages.SearchModel
+@using KhumaloCrafts.WebApp.Components;
+@{
+    ViewData["Title"] = "SearchPage";
+}
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="_framework/blazor.server.js"></script>
+
+<h3>Search Results</h3>
+<p>
+    Welcome to the vibrant world of KhumaloCraft Emporium,
+    where artistic passion meets global appreciation! Here,
+    you'll discover a treasure trove of handcrafted masterpieces,
+    each one telling a unique story and brimming with cultural richness.
+</p>
+
+
+<div id="fh5co-product">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 mb-4">
+
+                <form method="post">
+                    <div class="input-group">
+
+                        <input type="search" name="searchtext" class="form-control" placeholder="search...">
+
+                        <div class="input-group-append">
+
+                            <button type="submit" class="btn btn-primary" style="margin-left: 8px; height: 54px">search</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+                @foreach (var item in Model.searchResultsList)
+                {
+                    <div class="col-md-4 text-center animate-box" value="@item.productId">
+                        <div class="product">
+                            <div class="product-grid" style="background-image:url(@item.images);">
+                                <div class="inner">
+                                    <p>
+                                        <a class="icon" href="/addtocart?id=@item.productId&name=@item.name&description=@item.description&price=@item.price&img=@item.images"><ion-icon name="cart" size="medium"></ion-icon></a>
+                                        <a href="single.html" class="icon"><ion-icon name="eye" size="medium"></ion-icon></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <h3><a href="single.html">@item.name</a></h3>
+                                R<span class="price">@item.price</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+</div>
